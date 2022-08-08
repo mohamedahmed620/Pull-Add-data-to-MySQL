@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/stylesheet.css') }}">
+    <title>home</title>
+</head>
+<body>
+    <div id = "container">
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <h1>New Dojo</h1>
+            <!-- <form action="/add_dojo">
+                <label for="">Name</label>
+                <input type="text" name = "first_name">
+                <button>Submit</button>
+            </form> -->
+            <a href="/add_dojo">Add Dojo</a>
+
+        </div>
+
+        <div>
+            <h1>Dojo name</h1>
+            <table>
+                <tr>
+                    <th>Dojo name</th>
+                </tr>
+                {%for dojo in data:%}
+                <tr>
+                    <td><a href="/show_dojo_info/{{dojo.id}}">{{dojo.name}}</a></td>
+
+                </tr>
+                {%endfor%}
+            </table>
+            <a href="/add_ninja">Add Ninja</a>
+
+        </div>
+    </div>    
+</body>
+</html>
